@@ -1,0 +1,11 @@
+.all-scroll {
+    opacity: 0.8;
+    
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.item--active {
+    opacity: 1;
+}

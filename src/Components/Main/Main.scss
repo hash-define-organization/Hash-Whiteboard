@@ -1,0 +1,96 @@
+.main {
+    min-height: 90vh;
+    position: relative;
+
+    .sidebar {
+        display: flex;
+    }
+
+    .whiteboard__header {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        position: absolute;
+        top: 0px;
+        left: 30px;
+        left:0px;
+
+        // overflow-y: scroll;
+        
+        height: 100%;
+        z-index: 100;
+        min-height: 5vh;
+        padding: 5px 10px;
+
+        // &::-webkit-scrollbar-track {
+        //     background-color: #F5F5F5;
+        // }
+
+        // &::-webkit-scrollbar {
+        //     width: 10px;
+        //     background-color: #F5F5F5;
+        // }
+
+        // &::-webkit-scrollbar-thumb {
+        //     background-color: #000000;
+        //     border: 2px solid #555555;
+        // }
+
+        .header--item {
+            margin: 10px 0px;
+            cursor: pointer;
+            color: rgba(white, 0.8);
+            transition: transform 0.2s ease-in-out;
+
+            &:hover {
+                color: rgba(white, 1);
+                transform: scale(1.1);
+            }
+        }
+
+        .shareIcon--active {
+
+            color: rgb(4, 255, 4) !important;
+
+        }
+
+        .stopIcon--active {
+
+            color: red !important;
+            
+        }
+        
+        .stopIcon--disabled {
+            display: none;
+        }
+
+        .item--active {
+            color: rgba(white, 1) !important;
+        }
+
+        .eraser--icon {
+            font-size: 24px;
+        }
+
+        .color__picker {
+            cursor: pointer;
+            position: relative;
+            height: 0%;
+            margin-bottom: 40px;
+
+            .color__palette {
+                position: absolute;
+                top: -80px;
+                left: 50px;
+            }
+
+            .visible--palette {
+                height: 100%;
+            }
+        }
+        
+    }
+
+}
