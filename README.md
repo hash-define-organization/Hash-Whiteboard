@@ -36,17 +36,17 @@ I am writing down the Dependencies for beginners, so that they can look into it 
 
 2. Clone the Forked Repository to your local machine.
 	```
-	git clone https://github.com/<your GitHub user name>/React-Messenger-App.git.
+	git clone https://github.com/<your GitHub user name>/Hash-Whiteboard.git.
 	```
 
-3. Change the directory to React-Messenger-App.
+3. Change the directory to Hash-Whiteboard.
 	```bash
-	cd React-Messenger-App
+	cd Hash-Whiteboard
 	```
 
 4. Add remote to the Original Repository.
 	```
-	git add remote https://github.com/DhairyaBahl/React-Messenger-App.git
+	git add remote https://github.com/DhairyaBahl/Hash-Whiteboard.git
 	```
 
 5. Install the dependecies.
