@@ -1,70 +1,84 @@
-# Getting Started with Create React App
+# Hash Whiteboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![image](https://user-images.githubusercontent.com/71627983/151713554-68535167-892e-4021-b42b-874bf23d41b3.png)
 
-## Available Scripts
 
-In the project directory, you can run:
+##
+[![forthebadge](https://forthebadge.com/images/badges/open-source.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)    [![forthebadge](https://forthebadge.com/images/badges/made-with-crayons.svg)](https://forthebadge.com)    [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 
-### `npm start`
+This is Hash-Whiteboard, made with ReactJS, NodeJS, Socket-IO, Material-UI.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Motive
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This Repository is created with a motive to guide beginners with the open-source and with big react projects. I have already created some issues for the beginners so that they can work on them and even make there first contribution in this repository.
 
-### `npm test`
+# Instructions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You can test this project in your create-react-app feature by replacing the files.
 
-### `npm run build`
+# Supported Platforms
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This app can be built on any platform. It can be Windows, Linux , MacOS or any other. You only need the create-react-app feature and rest is in the Dependencies section.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I am writing down the Dependencies for beginners, so that they can look into it and then understand and install them if they want to.
 
-### `npm run eject`
+* ReactJS
+* NodeJS
+* Socket-IO
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Installation and Setup
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Fork the Repository
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+	<img width="72" alt="image" src="https://user-images.githubusercontent.com/71627983/151713658-7e9576d0-f373-4e6a-a60a-e3d58b3b38c8.png">
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. Clone the Forked Repository to your local machine.
+	```
+	git clone https://github.com/<your GitHub user name>/Hash-Whiteboard.git.
+	```
 
-## Learn More
+3. Change the directory to Hash-Whiteboard.
+	```bash
+	cd Hash-Whiteboard
+	```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. Add remote to the Original Repository.
+	```
+	git add remote https://github.com/DhairyaBahl/Hash-Whiteboard.git
+	```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+5. Install the dependecies.
+	```node
+	npm install
+	```
 
-### Code Splitting
+6. Run the application.
+	```node
+	npm start
+	```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+7. The app starts on `localhost:3000`. If not, [Click here](http://localhost:3000) to open the app in browser.
 
-### Analyzing the Bundle Size
+# Connect with me
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* [Twitter](https://twitter.com/bahldhairya)
+* [Medium](https://medium.com/@dhairyabahl5)
+* [Gmail](dhairyabahl5@gmail.com)
+* [LinkedIn](https://www.linkedin.com/in/dhairya-bahl)
 
-### Making a Progressive Web App
+# Show your support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Give a ⭐ if you like this web-app.
 
-### Advanced Configuration
+# FAQs
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 1. I am a beginner with open source or with react can I contribute in this repository ?
+Anybody can contribute to this project. Just take an issue, give your ideas, work on the issue and I am always here to guide you throughout the process ❤ .
 
-### Deployment
+## 2. What are the steps to make my first contribution ?
+Kindly refer to the [contributing.md](/contributing.md) file. All the contributing guidelines are written over there.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 3. Is there any need to assign myself to the issue before starting to work on the issue ?
+It is better to wait until you are assigned to the issue. Although if you are make sure that no-one is working on the issue then you can start working on the issue.
