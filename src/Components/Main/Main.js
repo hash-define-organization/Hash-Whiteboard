@@ -33,7 +33,7 @@ class Main extends React.Component {
         super(props);
 
         this.state = {
-            width : '100%',
+            width : '100vw',
             height: '90vh',
             value : '',
             defaultValue: '',
@@ -354,6 +354,9 @@ class Main extends React.Component {
                 // lineWidth = {this.state.brushConfig.lineWidth}
                 lineWidth={currLineWidth}
                 className={'whiteboard'}
+                style = {{
+                    cursor: 'crosshair'
+                }}
                 undoSteps = {30}
                 value={this.state.iAmReciever ? this.state.value : null}
                 disabled={this.state.iAmReciever}

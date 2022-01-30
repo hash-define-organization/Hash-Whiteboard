@@ -623,7 +623,7 @@ class SketchField extends PureComponent {
     if (this._selectedTool) eventFunction(e);
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     let { tool, value, undoSteps, defaultValue, backgroundColor } = this.props;
 
     let canvas = (this._fc = new fabric.Canvas(
@@ -674,9 +674,11 @@ class SketchField extends PureComponent {
     (value || defaultValue) && this.fromJSON(value || defaultValue);
   };
 
-  componentWillUnmount = () => window.removeEventListener("resize", this._resize);
+  componentWillUnmount() {
+    window.removeEventListener("resize", this._resize);
+  }
 
-  componentDidUpdate = (prevProps, prevState) => {
+  componentDidUpdate (prevProps, prevState) {
     if (
       this.props.width !== prevProps.width ||
       this.props.height !== prevProps.height
@@ -710,12 +712,12 @@ class SketchField extends PureComponent {
     }
   };
 
-  render = () => {
+  render() {
     let { className, style, width, height } = this.props;
 
     let canvasDivStyle = Object.assign(
       {},
-      style ? style : {},
+      style ? style : {cursor: "crosshair"},
       width ? { width: width } : {},
       height ? { height: height } : { height: 512 }
     );
