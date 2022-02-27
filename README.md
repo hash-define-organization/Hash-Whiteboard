@@ -49,7 +49,7 @@ I am writing down the Dependencies for beginners, so that they can look into it 
 
 4. Add remote to the Original Repository.
 	```
-	git add remote https://github.com/hash-define-organization/Hash-Whiteboard.git
+	git remote add upstream https://github.com/hash-define-organization/Hash-Whiteboard.git
 	```
 
 5. Install the dependecies.
