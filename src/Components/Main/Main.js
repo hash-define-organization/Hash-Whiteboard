@@ -371,41 +371,41 @@ class Main extends React.Component {
         return (
             <div className='main'>
                     <div className='whiteboard__header' style={{backgroundColor: '#363d48'}}>
-                        <span className='share'>
+                        <span className='tooltip_component_text'>
                         <ShareIcon className = {`header--item ${this.state.socketConnected ? "shareIcon--active" : ""}`}  onClick={this.makeThisLive}/><div className='tooltip'><span className="tooltiptext">Share</span></div>
                         </span>
                         <CancelPresentationIcon className={`header--item ${this.state.socketConnected ? "stopIcon--active" : "stopIcon--disabled"}`} onClick = {this.makeThisOffline} />
-                        {!this.state.receiverConnected && <><span className='brush'><span className = {`header--item ${this.state.active === 'Pencil' && 'item--active'}`} >
+                        {!this.state.receiverConnected && <><span className='tooltip_component_text'><span className = {`header--item ${this.state.active === 'Pencil' && 'item--active'}`} >
                         
                         <BrushIcon  onClick = {this.pencilClick} />
                             {/* { this.state.showPencilOptions && <span></span>} */}
                         </span><div className='tooltip'><span className="tooltiptext">Brush</span></div>
                         </span>
-                        <span className='eraser'>
+                        <span className='tooltip_component_text'>
                         <Icon icon="mdi:eraser" className = {`header--item eraser--icon ${this.state.active === 'Eraser' && 'item--active'}`} onClick = {this.eraserClick}/><div className='tooltip'><span className="tooltiptext">Erase</span></div>
                         </span>
-                        <span className='rectangle'>
+                        <span className='tooltip_component_text'>
                         <RectangleIcon className = {`header--item ${this.state.active === 'Rectangle' && 'item--active'}`} onClick = {() => {this.setState({tool: Tools.Rectangle, active: 'Rectangle'})}}/><div className='tooltip'><span className="tooltiptext">Rectangle</span></div>
                         </span>
-                        <span className='circle'>
+                        <span className='tooltip_component_text'>
                         <CircleIcon className = {`header--item ${this.state.active === 'Circle' && 'item--active'}`} onClick = {()=>{ this.setState({tool: Tools.Circle, active: 'Circle'})}} /><div className='tooltip'><span className="tooltiptext">Circle</span></div>
                         </span>
                         <span className = "color__picker">
                         <PaletteIcon  onClick={this.toggleColorPicker} className = 'header--item'/>
                             { this.state.showColorPicker && <HexColorPicker className='color__palette' color={this.state.color} onChange={this.setColor} />}<div className='tooltip'><span className="tooltiptext">Color Pallet</span></div>
                         </span>
-                        <span className='clear'>
+                        <span className='tooltip_component_text'>
                         <ClearIcon className = 'header--item' onClick = {this.clearBoard}/><div className='tooltip'><span className="tooltiptext">Clear All</span></div>
                         </span>
-                        <span className='undo'>
+                        <span className='tooltip_component_text'>
                         <UndoIcon onClick = {this.undoStep} className='undo header--item' /><div className='tooltip'><span className="tooltiptext">Undo</span></div>
                         </span>
-                        <span className='redo'>
+                        <span className='tooltip_component_text'>
                         <RedoIcon onClick = {this.redoStep} className='redo header--item'/><div className='tooltip'><span className="tooltiptext">Redo</span></div></span></>}
-                        <span className='zoomIn'>
+                        <span className='tooltip_component_text'>
                         <ZoomInIcon className = {`header--item`} onClick = {this.zoomIn} /><div className='tooltip'><span className="tooltiptext">Zoom In</span></div>
                         </span>
-                        <span className='zoomOut'>
+                        <span className='tooltip_component_text'>
                         <ZoomOutIcon className = {`header--item`} onClick = {this.zoomOut} /><div className='tooltip'><span className="tooltiptext">Zoom Out</span></div>
                         </span>
                     </div>

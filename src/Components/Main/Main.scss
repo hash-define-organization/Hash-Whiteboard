@@ -8,50 +8,38 @@
     }
 
     .whiteboard__header {
-
         display: flex;
         flex-direction: column;
         align-items: center;
-
         position: absolute;
         top: 0px;
         left: 30px;
         left:0px;
-
-        // overflow-y: scroll;
-        
+        // overflow-y: scroll;   
         height: 100%;
         z-index: 100;
         min-height: 5vh;
         padding: 5px 10px;
-
         // &::-webkit-scrollbar-track {
         //     background-color: #F5F5F5;
         // }
-
         // &::-webkit-scrollbar {
         //     width: 10px;
         //     background-color: #F5F5F5;
         // }
-
         // &::-webkit-scrollbar-thumb {
         //     background-color: #000000;
         //     border: 2px solid #555555;
         // }
-
         .header--item {
             margin: 10px 0px;
             cursor: pointer;
-            // position: relative;
             color: rgba(white, 0.8);
             transition: transform 0.2s ease-in-out;
-           
             &:hover {
                 color: rgba(white, 1);
                 transform: scale(1.2);
             }
-          
-            
         }
         .tooltip{
             display: flex;
@@ -88,113 +76,28 @@
             border-style: solid;
             border-color: white white transparent transparent;
           }
-        .share{
+        .tooltip_component_text{
             position: relative;
             &:hover .tooltip{
                 opacity: 1;
 
             }
-
         }
-        .brush{
-            position: relative;
-            &:hover .tooltip{
-                opacity: 1;
-
-            }
-
-        }
-        .eraser{
-            position: relative;
-            &:hover .tooltip{
-                opacity: 1;
-
-            }
-
-        }
-        .rectangle{
-            position: relative;
-            &:hover .tooltip{
-                opacity: 1;
-
-            }
-
-        }
-        .circle{
-            position: relative;
-            &:hover .tooltip{
-                opacity: 1;
-
-            }
-
-        }
-        .clear{
-            position: relative;
-            &:hover .tooltip{
-                opacity: 1;
-
-            }
-
-        }
-        .undo{
-            position: relative;
-            &:hover .tooltip{
-                opacity: 1;
-
-            }
-
-        }
-        .redo{
-            position: relative;
-            &:hover .tooltip{
-                opacity: 1;
-
-            }
-
-        }
-        .zoomIn{
-            position: relative;
-            &:hover .tooltip{
-                opacity: 1;
-
-            }
-
-        }
-        .zoomOut{
-            position: relative;
-            &:hover .tooltip{
-                opacity: 1;
-
-            }
-
-        }
-
-        .shareIcon--active {
-            
+        .shareIcon--active {        
             color: rgb(4, 255, 4) !important;
-
         }
-
         .stopIcon--active {
-
-            color: red !important;
-            
-        }
-        
+            color: red !important;            
+        }       
         .stopIcon--disabled {
             display: none;
         }
-
         .item--active {
-            // position: relative;
             color: rgba(white, 1) !important;
         }
-
         .eraser--icon {
             font-size: 24px;
-            // position: relative;
         }
-
         .color__picker {
             cursor: pointer;
             position: relative;
@@ -206,7 +109,6 @@
                 top: -80px;
                 left: 50px;
             }
-
             .visible--palette {
                 height: 100%;
             }
