@@ -1,4 +1,3 @@
-
 # Hash Whiteboard
 
 ![Readme](https://user-images.githubusercontent.com/71627983/155388880-94d514ee-749c-4f4c-b9ac-e27aa4e53094.jpeg)
@@ -54,7 +53,7 @@ I am writing down the Dependencies for beginners, so that they can look into it 
 	```
 
 5. Install the dependecies.
-	 - using npm
+	- using npm
 	```node
 	npm install
 	```
@@ -70,10 +69,10 @@ I am writing down the Dependencies for beginners, so that they can look into it 
 	```
 	- using yarn
 	```node
-	yarn run start
+	yarn start
 	```
 
-8. The app starts on `localhost:3000`. If not, [Click here](http://localhost:3000) to open the app in browser
+7. The app starts on `localhost:3000`. If not, [Click here](http://localhost:3000) to open the app in browser.
 
 # Connect with me
 
