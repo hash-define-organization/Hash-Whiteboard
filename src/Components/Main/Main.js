@@ -14,13 +14,13 @@ import PaletteIcon from '@mui/icons-material/Palette';
 import BrushIcon from '@mui/icons-material/Brush';
 import RectangleIcon from '@mui/icons-material/Crop169';
 import CircleIcon from '@mui/icons-material/CircleOutlined';
-import MenuIcon from '@mui/icons-material/Menu';
-import EraserIcon from '../Eraser/Eraser';
+// import MenuIcon from '@mui/icons-material/Menu';
+// import EraserIcon from '../Eraser/Eraser';
 import ClearIcon from '@mui/icons-material/DeleteForever';
 import { Icon } from '@iconify/react';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
-import AllScroll from '../AllScroll/AllScroll';
+// import AllScroll from '../AllScroll/AllScroll';
 import ShareIcon from '@mui/icons-material/IosShare';
 import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 
@@ -40,9 +40,10 @@ class Main extends React.Component {
             changingBoard: false,
             loading: false,
             tool: Tools.Pencil,
-            color: '#fff',
+            color: 'white',
             showColorPicker: false,
-            backgroundColor: 'transparent',
+            showBgColorPicker: false,
+            backgroundColor: 'black',
             active: 'Pencil',
             lineWidth: 3,
             eraserWidth: 30,
@@ -57,9 +58,11 @@ class Main extends React.Component {
         }
 
         this.setColor = this.setColor.bind(this);
+        this.setBackgroundColor = this.setBackgroundColor.bind(this);
         this.sketchField = React.createRef();
         this.manipulateBoard = this.manipulateBoard.bind(this);
         this.toggleColorPicker = this.toggleColorPicker.bind(this);
+        this.toggleBgColorPicker = this.toggleBgColorPicker.bind(this);
         this.maxLength = 0;
 
         this.toolChange = this.toolChange.bind(this);
@@ -143,9 +146,20 @@ class Main extends React.Component {
         this.setState({color:color})
     }
 
+    setBackgroundColor(backgroundColor) {
+        console.log('state-changed', backgroundColor)
+        this.setState({backgroundColor:backgroundColor})
+    }
+
     toggleColorPicker() {
         this.setState(prevState => ({
             showColorPicker: !prevState.showColorPicker
+        }))
+    }
+
+    toggleBgColorPicker() {
+        this.setState(prevState => ({
+            showBgColorPicker: !prevState.showBgColorPicker
         }))
     }
 
@@ -331,7 +345,7 @@ class Main extends React.Component {
             currLineColor = this.state.color;
 
         else
-            currLineColor = '#000';
+            currLineColor = this.state.backgroundColor;
 
         if(this.state.active !== 'Eraser')
             currLineWidth = this.state.lineWidth;
@@ -340,7 +354,7 @@ class Main extends React.Component {
             currLineWidth = this.state.eraserWidth;
 
         const currTool = this.state.receiverConnected ? Tools.Select : this.state.tool;
-        console.log(this.state.iAmReciever)
+        // console.log(this.state.iAmReciever)
 
         const whiteboard = (
             <SketchField
@@ -362,7 +376,7 @@ class Main extends React.Component {
                 disabled={this.state.iAmReciever}
                 // defaultValue={this.state.defaultValue}
                 // backgroundColor={this.props.theme === 'light' ? '#fff' : '#000'}
-                backgroundColor={'#000'}
+                backgroundColor={this.state.backgroundColor}
                 onChange={this.manipulateBoard}
                 
             />
@@ -383,6 +397,10 @@ class Main extends React.Component {
                         <span className = "color__picker">
                             <PaletteIcon  onClick={this.toggleColorPicker} className = 'header--item'/>
                             { this.state.showColorPicker && <HexColorPicker className='color__palette' color={this.state.color} onChange={this.setColor} />}
+                        </span>
+                        <span className = "bg_color__picker">
+                            <i onClick={this.toggleBgColorPicker} className = 'fa-solid fa-fill-drip header--item'></i>
+                            { this.state.showBgColorPicker && <HexColorPicker className='bg_color__palette' color={this.state.backgroundColor} onChange={this.setBackgroundColor} />}
                         </span>
                         <ClearIcon className = 'header--item' onClick = {this.clearBoard}/>
                         <UndoIcon onClick = {this.undoStep} className='undo header--item' />

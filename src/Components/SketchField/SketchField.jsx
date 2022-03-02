@@ -83,10 +83,10 @@ class SketchField extends PureComponent {
   };
 
   static defaultProps = {
-    lineColor: "black",
     lineWidth: 10,
     fillColor: "transparent",
     backgroundColor: "transparent",
+    lineColor: "transparent",
     opacity: 1.0,
     undoSteps: 25,
     tool: null,
