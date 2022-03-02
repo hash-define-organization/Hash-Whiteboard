@@ -371,24 +371,43 @@ class Main extends React.Component {
         return (
             <div className='main'>
                     <div className='whiteboard__header' style={{backgroundColor: '#363d48'}}>
-                        <ShareIcon className = {`header--item ${this.state.socketConnected ? "shareIcon--active" : ""}`} onClick={this.makeThisLive}/>
+                        <span className='share'>
+                        <ShareIcon className = {`header--item ${this.state.socketConnected ? "shareIcon--active" : ""}`}  onClick={this.makeThisLive}/><div className='tooltip'><span className="tooltiptext">Share</span></div>
+                        </span>
                         <CancelPresentationIcon className={`header--item ${this.state.socketConnected ? "stopIcon--active" : "stopIcon--disabled"}`} onClick = {this.makeThisOffline} />
-                        {!this.state.receiverConnected && <><span className = {`header--item ${this.state.active === 'Pencil' && 'item--active'}`} >
-                            <BrushIcon  onClick = {this.pencilClick} />
+                        {!this.state.receiverConnected && <><span className='brush'><span className = {`header--item ${this.state.active === 'Pencil' && 'item--active'}`} >
+                        
+                        <BrushIcon  onClick = {this.pencilClick} />
                             {/* { this.state.showPencilOptions && <span></span>} */}
+                        </span><div className='tooltip'><span className="tooltiptext">Brush</span></div>
                         </span>
-                        <Icon icon="mdi:eraser" className = {`header--item eraser--icon ${this.state.active === 'Eraser' && 'item--active'}`} onClick = {this.eraserClick}/>
-                        <RectangleIcon className = {`header--item ${this.state.active === 'Rectangle' && 'item--active'}`} onClick = {() => {this.setState({tool: Tools.Rectangle, active: 'Rectangle'})}}/>
-                        <CircleIcon className = {`header--item ${this.state.active === 'Circle' && 'item--active'}`} onClick = {()=>{ this.setState({tool: Tools.Circle, active: 'Circle'})}} />
+                        <span className='eraser'>
+                        <Icon icon="mdi:eraser" className = {`header--item eraser--icon ${this.state.active === 'Eraser' && 'item--active'}`} onClick = {this.eraserClick}/><div className='tooltip'><span className="tooltiptext">Erase</span></div>
+                        </span>
+                        <span className='rectangle'>
+                        <RectangleIcon className = {`header--item ${this.state.active === 'Rectangle' && 'item--active'}`} onClick = {() => {this.setState({tool: Tools.Rectangle, active: 'Rectangle'})}}/><div className='tooltip'><span className="tooltiptext">Rectangle</span></div>
+                        </span>
+                        <span className='circle'>
+                        <CircleIcon className = {`header--item ${this.state.active === 'Circle' && 'item--active'}`} onClick = {()=>{ this.setState({tool: Tools.Circle, active: 'Circle'})}} /><div className='tooltip'><span className="tooltiptext">Circle</span></div>
+                        </span>
                         <span className = "color__picker">
-                            <PaletteIcon  onClick={this.toggleColorPicker} className = 'header--item'/>
-                            { this.state.showColorPicker && <HexColorPicker className='color__palette' color={this.state.color} onChange={this.setColor} />}
+                        <PaletteIcon  onClick={this.toggleColorPicker} className = 'header--item'/>
+                            { this.state.showColorPicker && <HexColorPicker className='color__palette' color={this.state.color} onChange={this.setColor} />}<div className='tooltip'><span className="tooltiptext">Color Pallet</span></div>
                         </span>
-                        <ClearIcon className = 'header--item' onClick = {this.clearBoard}/>
-                        <UndoIcon onClick = {this.undoStep} className='undo header--item' />
-                        <RedoIcon onClick = {this.redoStep} className='redo header--item'/></>}
-                        <ZoomInIcon className = {`header--item`} onClick = {this.zoomIn} />
-                        <ZoomOutIcon className = {`header--item`} onClick = {this.zoomOut} />
+                        <span className='clear'>
+                        <ClearIcon className = 'header--item' onClick = {this.clearBoard}/><div className='tooltip'><span className="tooltiptext">Clear All</span></div>
+                        </span>
+                        <span className='undo'>
+                        <UndoIcon onClick = {this.undoStep} className='undo header--item' /><div className='tooltip'><span className="tooltiptext">Undo</span></div>
+                        </span>
+                        <span className='redo'>
+                        <RedoIcon onClick = {this.redoStep} className='redo header--item'/><div className='tooltip'><span className="tooltiptext">Redo</span></div></span></>}
+                        <span className='zoomIn'>
+                        <ZoomInIcon className = {`header--item`} onClick = {this.zoomIn} /><div className='tooltip'><span className="tooltiptext">Zoom In</span></div>
+                        </span>
+                        <span className='zoomOut'>
+                        <ZoomOutIcon className = {`header--item`} onClick = {this.zoomOut} /><div className='tooltip'><span className="tooltiptext">Zoom Out</span></div>
+                        </span>
                     </div>
                 { whiteboard }
                 {this.state.shortUrl && <Notification data = {"Here is the shorten url: "} shortenUrl = {this.state.shortUrl} />}
