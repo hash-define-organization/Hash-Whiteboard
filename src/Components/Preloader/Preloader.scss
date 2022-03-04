@@ -34,6 +34,14 @@
     transform: scale(1, 1);
   }
 }
+@include keyframes(load) {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
 .preloader {
   background-color: black;
   display: flex;
@@ -49,24 +57,24 @@
     margin-top: 50%;
   }
 
-  .header__title {
-    text-align: center;
-    letter-spacing: 2px;
-    color: rgba(255, 255, 255, 0.4);
-    background-position: 0 0;
+  .progress {
+    background: rgba(255, 255, 255, 0.1);
+    justify-content: flex-start;
+    border-radius: 100px;
+    align-items: center;
+    position: relative;
+    padding: 0 5px;
+    display: flex;
+    height: 40px;
+    width: 500px;
+  }
 
-    background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
-    background-image: linear-gradient(92deg, #f35626, #feab3a);
-    background-clip: text;
-
-    animation-name: hue;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-
-    font-size: 32px;
-    font-weight: bold;
-
-    cursor: pointer;
+  .progress_value {
+    box-shadow: 0 10px 40px -10px #fff;
+    border-radius: 100px;
+    background: #fff;
+    height: 30px;
+    width: 0;
+    @include animation("load 3s normal forwards");
   }
 }
