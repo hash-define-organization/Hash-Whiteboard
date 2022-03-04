@@ -53,13 +53,23 @@ I am writing down the Dependencies for beginners, so that they can look into it 
 	```
 
 5. Install the dependecies.
+	- using npm
 	```node
 	npm install
 	```
+	- using yarn
+	```node
+	yarn
+	```
 
 6. Run the application.
+	- using npm
 	```node
 	npm start
+	```
+	- using yarn
+	```node
+	yarn start
 	```
 
 7. The app starts on `localhost:3000`. If not, [Click here](http://localhost:3000) to open the app in browser.
