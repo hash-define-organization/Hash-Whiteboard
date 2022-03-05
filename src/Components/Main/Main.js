@@ -186,7 +186,7 @@ class Main extends React.Component {
         //     return this.setState({showPencilOptions: false});
         // }
 
-        this.setState({ tool: Tools.Pencil, active: 'Pencil', currLineWidth: 3 })
+        this.setState({ tool: Tools.Pencil, active: 'Pencil' })
     }
 
     eraserClick(event) {
