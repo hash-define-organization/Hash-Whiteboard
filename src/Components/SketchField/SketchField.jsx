@@ -380,7 +380,7 @@ class SketchField extends PureComponent {
    */
   undo = () => {
     let history = this._history;
-    if(history.getCurrent() === null) return;
+    if (history.getCurrent() === null) return;
 
     let [obj, prevState, currState] = history.getCurrent();
     history.undo();
@@ -678,7 +678,7 @@ class SketchField extends PureComponent {
     window.removeEventListener("resize", this._resize);
   }
 
-  componentDidUpdate (prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (
       this.props.width !== prevProps.width ||
       this.props.height !== prevProps.height
@@ -695,8 +695,8 @@ class SketchField extends PureComponent {
       }
     }
 
-    if(this.props.lineColor !== prevProps.lineColor) {
-      if(this._selectedTool)
+    if (this.props.lineColor !== prevProps.lineColor || this.props.lineWidth !== prevProps.lineWidth) {
+      if (this._selectedTool)
         this._selectedTool.configureCanvas(this.props);
     }
 
@@ -717,7 +717,7 @@ class SketchField extends PureComponent {
 
     let canvasDivStyle = Object.assign(
       {},
-      style ? style : {cursor: "crosshair"},
+      style ? style : { cursor: "crosshair" },
       width ? { width: width } : {},
       height ? { height: height } : { height: 512 }
     );
