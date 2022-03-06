@@ -83,10 +83,23 @@
 
             .eraser__slider {
                 position: absolute;
-                top: 15px;
+                top: 10px;
                 left: 50px;
+                background-color: rgb(54, 61, 72);
+                padding: 8px;
+                border-radius: 4px;
             }
-
+            .eraser__slider::after {
+                position: absolute;
+                content: "";
+                position: absolute;
+                top: 33%;
+                right: 100%;
+                margin-left: -5px;
+                border-width: 8px;
+                border-style: solid;
+                border-color: transparent rgb(54, 61, 72) transparent transparent;
+              }
           
         }
 

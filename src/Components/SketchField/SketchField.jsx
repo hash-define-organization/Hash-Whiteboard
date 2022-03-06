@@ -354,6 +354,16 @@ class SketchField extends PureComponent {
   };
 
   /**
+   * Sets the cursor for this sketch
+   * @param cursor in string format
+   */
+  _cursor = (cursor) => {
+    if (!cursor) return;
+    let canvas = this._fc;
+    canvas.freeDrawingCursor = cursor;
+  };
+
+  /**
    * Zoom the drawing by the factor specified
    *
    * The zoom factor is a percentage with regards the original, for example if factor is set to 2
@@ -700,6 +710,11 @@ class SketchField extends PureComponent {
         this._selectedTool.configureCanvas(this.props);
     }
 
+    if (this.props.style.cursor !== prevProps.style.cursor) {
+      if (this._selectedTool)
+        this._cursor(this.props.style.cursor);
+    }
+
     if (this.props.backgroundColor !== prevProps.backgroundColor) {
       this._backgroundColor(this.props.backgroundColor);
     }
@@ -714,7 +729,6 @@ class SketchField extends PureComponent {
 
   render() {
     let { className, style, width, height } = this.props;
-
     let canvasDivStyle = Object.assign(
       {},
       style ? style : { cursor: "crosshair" },

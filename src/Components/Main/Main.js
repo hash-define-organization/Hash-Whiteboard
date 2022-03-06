@@ -368,7 +368,7 @@ class Main extends React.Component {
                 lineWidth={currLineWidth}
                 className={'whiteboard'}
                 style={{
-                    cursor: 'crosshair'
+                    cursor: this.state.active === 'Eraser' ? "url('cursors/Eraser.svg'), auto" : 'crosshair'
                 }}
                 undoSteps={30}
                 value={this.state.iAmReciever ? this.state.value : null}
@@ -391,7 +391,7 @@ class Main extends React.Component {
                     </span>
                         <span className="eraser__container">
                             <EraserIcon icon="mdi:eraser" onClick={this.toggleEraserSlider} className={`header--item`} />
-                            {this.state.showEraserSlider && <input className='eraser__slider' type="range" min="1" max="100" value={this.state.eraserWidth} onChange={this.eraserClick} />}
+                            {this.state.showEraserSlider && <span className='eraser__slider'><input type="range" min="1" max="100" value={this.state.eraserWidth} onChange={this.eraserClick} /></span>}
                         </span>
                         <RectangleIcon className={`header--item ${this.state.active === 'Rectangle' && 'item--active'}`} onClick={() => { this.setState({ tool: Tools.Rectangle, active: 'Rectangle' }) }} />
                         <CircleIcon className={`header--item ${this.state.active === 'Circle' && 'item--active'}`} onClick={() => { this.setState({ tool: Tools.Circle, active: 'Circle' }) }} />
