@@ -393,7 +393,7 @@ class Main extends React.Component {
                             <BrushIcon  onClick = {this.pencilClick} />
                             {/* { this.state.showPencilOptions && <span></span>} */}
                         </span>
-                        <Icon icon="mdi:eraser" className = {`header--item eraser--icon ${this.state.active === 'Eraser' && 'item--active'}`} onClick = {this.eraserClick}/>
+                        <EraserIcon icon="mdi:eraser" className = {`header--item eraser--icon ${this.state.active === 'Eraser' && 'item--active'}`} onClick = {this.eraserClick}/>
                         <RectangleIcon className = {`header--item ${this.state.active === 'Rectangle' && 'item--active'}`} onClick = {() => {this.setState({tool: Tools.Rectangle, active: 'Rectangle'})}}/>
                         <CircleIcon className = {`header--item ${this.state.active === 'Circle' && 'item--active'}`} onClick = {()=>{ this.setState({tool: Tools.Circle, active: 'Circle'})}} />
                         <span className = "color__picker">
