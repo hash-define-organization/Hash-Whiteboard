@@ -10,7 +10,7 @@
     z-index: 100;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 
     -webkit-box-shadow: 1px 1px 10px 3px white; 
@@ -37,7 +37,7 @@
             animation-iteration-count: infinite;
             animation-timing-function: linear;
         
-            font-size: 32px;
+            font-size: 40px;
             font-weight: bold;
 
             cursor: pointer;

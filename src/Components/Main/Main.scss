@@ -1,7 +1,7 @@
 .main {
     min-height: 90vh;
     position: relative;
-    background-color: green;
+    background-color: green !important;
 
     .sidebar {
         display: flex;
@@ -91,6 +91,26 @@
                 height: 100%;
             }
         }
+
+        .bg_color__picker {
+            cursor: pointer;
+            position: relative;
+            font-size: 20px;
+            height: 0%;
+            margin-bottom: 40px;
+
+            .bg_color__palette {
+                position: absolute;
+                top: -80px;
+                left: 50px;
+            }
+
+            .visible--palette {
+                height: 100%;
+            }
+        }
+
+
         
     }
 

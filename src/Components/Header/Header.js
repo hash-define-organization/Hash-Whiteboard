@@ -25,13 +25,13 @@ class Header extends React.Component {
                         WHITEBOARD
                     </div>
                 </div>
-                <div className="header__right">
+                {/* <div className="header__right">
                     {
                         this.props.theme === 'light' ? 
                         <MoonIcon className="icon themeIcon moonIcon" onClick={this.changeTheme} /> : 
                         <LightModeIcon className="icon themeIcon" onClick={this.changeTheme} />
                     }
-                </div>
+                </div> */}
             </div> 
         );
     }
