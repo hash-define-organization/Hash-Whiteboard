@@ -123,4 +123,12 @@ Remember your upstream base branch should be master and source should be your fe
 
 Awesome! You have made your first contribution. If you have any doubts please let me know in the comments.
 
+
+## About GirlScript Summer of Code 2022
+- Issues labelled with GSSoC'22 are considered for GirlScript Summer of Code 2022.
+- There are different labels on issues having different levels:
+     - Level-1 -> Easy / Beginner Friendly Issues
+     - Level-2 -> Medium Issues
+     - Level-3 -> Hard Issues
+
 #### BE OPEN!
