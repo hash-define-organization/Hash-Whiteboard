@@ -354,6 +354,16 @@ class SketchField extends PureComponent {
   };
 
   /**
+   * Sets the cursor for this sketch
+   * @param cursor in string format
+   */
+  _cursor = (cursor) => {
+    if (!cursor) return;
+    let canvas = this._fc;
+    canvas.freeDrawingCursor = cursor;
+  };
+
+  /**
    * Zoom the drawing by the factor specified
    *
    * The zoom factor is a percentage with regards the original, for example if factor is set to 2
@@ -380,7 +390,7 @@ class SketchField extends PureComponent {
    */
   undo = () => {
     let history = this._history;
-    if(history.getCurrent() === null) return;
+    if (history.getCurrent() === null) return;
 
     let [obj, prevState, currState] = history.getCurrent();
     history.undo();
@@ -678,7 +688,7 @@ class SketchField extends PureComponent {
     window.removeEventListener("resize", this._resize);
   }
 
-  componentDidUpdate (prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (
       this.props.width !== prevProps.width ||
       this.props.height !== prevProps.height
@@ -695,9 +705,14 @@ class SketchField extends PureComponent {
       }
     }
 
-    if(this.props.lineColor !== prevProps.lineColor) {
-      if(this._selectedTool)
+    if (this.props.lineColor !== prevProps.lineColor || this.props.lineWidth !== prevProps.lineWidth) {
+      if (this._selectedTool)
         this._selectedTool.configureCanvas(this.props);
+    }
+
+    if (this.props.style.cursor !== prevProps.style.cursor) {
+      if (this._selectedTool)
+        this._cursor(this.props.style.cursor);
     }
 
     if (this.props.backgroundColor !== prevProps.backgroundColor) {
@@ -714,10 +729,9 @@ class SketchField extends PureComponent {
 
   render() {
     let { className, style, width, height } = this.props;
-
     let canvasDivStyle = Object.assign(
       {},
-      style ? style : {cursor: "crosshair"},
+      style ? style : { cursor: "crosshair" },
       width ? { width: width } : {},
       height ? { height: height } : { height: 512 }
     );

@@ -74,6 +74,11 @@ I am writing down the Dependencies for beginners, so that they can look into it 
 
 7. The app starts on `localhost:3000`. If not, [Click here](http://localhost:3000) to open the app in browser.
 
+# Important points to remember while contributing
+
+- Writing a blog about your contribution is a must after getting your PR merged! Otherwise, maintainers have right to revert the PR.
+- Make sure to fork the repository and run the code in your local environment, then only you will get assigned to an issue.
+
 # Connect with me
 
 * [Twitter](https://twitter.com/bahldhairya)

@@ -6,7 +6,7 @@ import UndoIcon from '@mui/icons-material/Undo';
 import RedoIcon from '@mui/icons-material/Redo';
 import { connect } from 'react-redux';
 import "react-color-palette/lib/css/styles.css";
-import { HexColorPicker,  } from "react-colorful";
+import { HexColorPicker, } from "react-colorful";
 
 import axios from 'axios';
 
@@ -33,15 +33,16 @@ class Main extends React.Component {
         super(props);
 
         this.state = {
-            width : '100vw',
+            width: '100vw',
             height: '90vh',
-            value : '',
+            value: '',
             defaultValue: '',
             changingBoard: false,
             loading: false,
             tool: Tools.Pencil,
             color: '#fff',
             showColorPicker: false,
+            showEraserSlider: false,
             backgroundColor: 'transparent',
             active: 'Pencil',
             lineWidth: 3,
@@ -51,7 +52,7 @@ class Main extends React.Component {
             socketConnected: false,
             shortUrl: '',
 
-            iAmReciever : false,
+            iAmReciever: false,
             receiverConnected: false,
             joinError: '',
         }
@@ -60,6 +61,7 @@ class Main extends React.Component {
         this.sketchField = React.createRef();
         this.manipulateBoard = this.manipulateBoard.bind(this);
         this.toggleColorPicker = this.toggleColorPicker.bind(this);
+        this.toggleEraserSlider = this.toggleEraserSlider.bind(this);
         this.maxLength = 0;
 
         this.toolChange = this.toolChange.bind(this);
@@ -86,7 +88,7 @@ class Main extends React.Component {
         this.setState({ loading: true });
 
         const data = localStorage.getItem('boardData')
-        
+
         if (data) {
 
             this.setState({
@@ -95,7 +97,7 @@ class Main extends React.Component {
 
         }
 
-        
+
         this.setState({ loading: false });
 
     }
@@ -110,7 +112,7 @@ class Main extends React.Component {
 
         // this.maxLength = dataLength;
 
-        if(!this.state.iAmReciever)
+        if (!this.state.iAmReciever)
             this.setState({
                 value: data,
             })
@@ -124,7 +126,7 @@ class Main extends React.Component {
     }
 
     toolChange() {
-        this.setState(prevState=>({
+        this.setState(prevState => ({
             tool: prevState.tool === Tools.Rectangle ? Tools.Pencil : Tools.Rectangle
         }))
     }
@@ -140,12 +142,20 @@ class Main extends React.Component {
 
     setColor(color) {
         // console.log('state-changed', color)
-        this.setState({color:color})
+        this.setState({ color: color })
     }
 
     toggleColorPicker() {
         this.setState(prevState => ({
             showColorPicker: !prevState.showColorPicker
+        }))
+    }
+
+    toggleEraserSlider() {
+        this.setState(prevState => ({
+            showEraserSlider: !prevState.showEraserSlider,
+            tool: Tools.Pencil,
+            active: 'Eraser'
         }))
     }
 
@@ -176,11 +186,15 @@ class Main extends React.Component {
         //     return this.setState({showPencilOptions: false});
         // }
 
-        this.setState({tool : Tools.Pencil, active: 'Pencil'})
+        this.setState({ tool: Tools.Pencil, active: 'Pencil' })
     }
 
-    eraserClick() {
-        this.setState({tool : Tools.Pencil, active: 'Eraser'})
+    eraserClick(event) {
+        this.setState({
+            tool: Tools.Pencil,
+            active: 'Eraser',
+            eraserWidth: parseInt(event.target.value)
+        })
     }
 
     zoomListeners(event) {
@@ -189,14 +203,14 @@ class Main extends React.Component {
 
         const zoomFactor = 0.9
 
-        if(event.deltaY > 0) this.sketchField.current?.zoom(zoomFactor);
-        if(event.deltaY < 0) this.sketchField.current?.zoom(1/zoomFactor);
+        if (event.deltaY > 0) this.sketchField.current?.zoom(zoomFactor);
+        if (event.deltaY < 0) this.sketchField.current?.zoom(1 / zoomFactor);
 
         // this.setState({tool: Tools.Pan, active: 'Pan'})
     }
 
     zoomIn(event) {
-        this.sketchField.current?.zoom(1/0.9);
+        this.sketchField.current?.zoom(1 / 0.9);
     }
 
     zoomOut(event) {
@@ -234,12 +248,12 @@ class Main extends React.Component {
 
     }
 
-    isConnected (message)  {
+    isConnected(message) {
 
-        if(message === true) 
-            return this.setState({receiverConnected: true});
+        if (message === true)
+            return this.setState({ receiverConnected: true });
 
-        this.setState({joinError : message})
+        this.setState({ joinError: message })
 
     }
 
@@ -254,12 +268,12 @@ class Main extends React.Component {
 
     connectWithSocket(shortUrl) {
 
-        this.socket = io('http://localhost:4000', { transports : ['websocket'] });
+        this.socket = io('http://localhost:4000', { transports: ['websocket'] });
 
         this.socket.on('connect', () => {
             console.log('connected')
 
-            if(this.state.iAmReciever === true)
+            if (this.state.iAmReciever === true)
                 this.setState({
                     socketConnected: true,
                 })
@@ -268,9 +282,9 @@ class Main extends React.Component {
                     socketConnected: true,
                     shortUrl: `${window.location.origin}/${shortUrl}`,
                 })
-            
 
-            if(this.state.iAmReciever === true) {
+
+            if (this.state.iAmReciever === true) {
                 this.joinWithSocket(shortUrl);
             }
         });
@@ -282,10 +296,10 @@ class Main extends React.Component {
             console.log('disconnected')
         });
 
-        if(this.state.iAmReciever === true) {
+        if (this.state.iAmReciever === true) {
 
             this.socket.on('white-user', data => {
-                this.setState({value: data})
+                this.setState({ value: data })
             })
 
         }
@@ -304,7 +318,7 @@ class Main extends React.Component {
     componentWillUnmount() {
         window.removeEventListener('wheel', this.zoomListeners);
 
-        if(this.socket) {
+        if (this.socket) {
             this.makeThisOffline();
         }
 
@@ -314,7 +328,7 @@ class Main extends React.Component {
 
         const currUrl = window.location.pathname.split('/')[1];
 
-        if(currUrl.length === 0) return;
+        if (currUrl.length === 0) return;
 
         this.setState({ iAmReciever: true }, () => this.connectWithSocket(currUrl));
 
@@ -324,75 +338,76 @@ class Main extends React.Component {
 
         let currLineColor, currLineWidth;
 
-        if(!this.state.iAmReciever)
+        if (!this.state.iAmReciever)
             this.socket?.emit('white-user', this.state.value);
 
-        if(this.state.active !== 'Eraser')
+        if (this.state.active !== 'Eraser')
             currLineColor = this.state.color;
 
         else
             currLineColor = '#000';
 
-        if(this.state.active !== 'Eraser')
+        if (this.state.active !== 'Eraser')
             currLineWidth = this.state.lineWidth;
-        
+
         else
             currLineWidth = this.state.eraserWidth;
 
         const currTool = this.state.receiverConnected ? Tools.Select : this.state.tool;
         console.log(this.state.iAmReciever)
-
         const whiteboard = (
             <SketchField
                 ref={this.sketchField}
-                width={this.state.width} 
-                height={this.state.height} 
-                tool={currTool}     
+                width={this.state.width}
+                height={this.state.height}
+                tool={currTool}
                 lineColor={currLineColor}
                 // lineColor={this.state.brushConfig.lineColor}
                 // lineWidth={this.state.lineWidth}
                 // lineWidth = {this.state.brushConfig.lineWidth}
                 lineWidth={currLineWidth}
                 className={'whiteboard'}
-                style = {{
-                    cursor: 'crosshair'
+                style={{
+                    cursor: this.state.active === 'Eraser' ? "url('cursors/Eraser.svg'), auto" : 'crosshair'
                 }}
-                undoSteps = {30}
+                undoSteps={30}
                 value={this.state.iAmReciever ? this.state.value : null}
                 disabled={this.state.iAmReciever}
                 // defaultValue={this.state.defaultValue}
                 // backgroundColor={this.props.theme === 'light' ? '#fff' : '#000'}
                 backgroundColor={'#000'}
                 onChange={this.manipulateBoard}
-                
+
             />
         )
-
         return (
             <div className='main'>
-                    <div className='whiteboard__header' style={{backgroundColor: '#363d48'}}>
-                        <ShareIcon className = {`header--item ${this.state.socketConnected ? "shareIcon--active" : ""}`} onClick={this.makeThisLive}/>
-                        <CancelPresentationIcon className={`header--item ${this.state.socketConnected ? "stopIcon--active" : "stopIcon--disabled"}`} onClick = {this.makeThisOffline} />
-                        {!this.state.receiverConnected && <><span className = {`header--item ${this.state.active === 'Pencil' && 'item--active'}`} >
-                            <BrushIcon  onClick = {this.pencilClick} />
-                            {/* { this.state.showPencilOptions && <span></span>} */}
+                <div className='whiteboard__header' style={{ backgroundColor: '#363d48' }}>
+                    <ShareIcon className={`header--item ${this.state.socketConnected ? "shareIcon--active" : ""}`} onClick={this.makeThisLive} />
+                    <CancelPresentationIcon className={`header--item ${this.state.socketConnected ? "stopIcon--active" : "stopIcon--disabled"}`} onClick={this.makeThisOffline} />
+                    {!this.state.receiverConnected && <><span className={`header--item ${this.state.active === 'Pencil' && 'item--active'}`} >
+                        <BrushIcon onClick={this.pencilClick} />
+                        {/* { this.state.showPencilOptions && <span></span>} */}
+                    </span>
+                        <span className="eraser__container">
+                            <EraserIcon icon="mdi:eraser" onClick={this.toggleEraserSlider} className={`header--item`} />
+                            {this.state.showEraserSlider && <span className='eraser__slider'><input type="range" min="1" max="100" value={this.state.eraserWidth} onChange={this.eraserClick} /></span>}
                         </span>
-                        <EraserIcon icon="mdi:eraser" className = {`header--item eraser--icon ${this.state.active === 'Eraser' && 'item--active'}`} onClick = {this.eraserClick}/>
-                        <RectangleIcon className = {`header--item ${this.state.active === 'Rectangle' && 'item--active'}`} onClick = {() => {this.setState({tool: Tools.Rectangle, active: 'Rectangle'})}}/>
-                        <CircleIcon className = {`header--item ${this.state.active === 'Circle' && 'item--active'}`} onClick = {()=>{ this.setState({tool: Tools.Circle, active: 'Circle'})}} />
-                        <span className = "color__picker">
-                            <PaletteIcon  onClick={this.toggleColorPicker} className = 'header--item'/>
-                            { this.state.showColorPicker && <HexColorPicker className='color__palette' color={this.state.color} onChange={this.setColor} />}
+                        <RectangleIcon className={`header--item ${this.state.active === 'Rectangle' && 'item--active'}`} onClick={() => { this.setState({ tool: Tools.Rectangle, active: 'Rectangle' }) }} />
+                        <CircleIcon className={`header--item ${this.state.active === 'Circle' && 'item--active'}`} onClick={() => { this.setState({ tool: Tools.Circle, active: 'Circle' }) }} />
+                        <span className="color__picker">
+                            <PaletteIcon onClick={this.toggleColorPicker} className='header--item' />
+                            {this.state.showColorPicker && <HexColorPicker className='color__palette' color={this.state.color} onChange={this.setColor} />}
                         </span>
-                        <ClearIcon className = 'header--item' onClick = {this.clearBoard}/>
-                        <UndoIcon onClick = {this.undoStep} className='undo header--item' />
-                        <RedoIcon onClick = {this.redoStep} className='redo header--item'/></>}
-                        <ZoomInIcon className = {`header--item`} onClick = {this.zoomIn} />
-                        <ZoomOutIcon className = {`header--item`} onClick = {this.zoomOut} />
-                    </div>
-                { whiteboard }
-                {this.state.shortUrl && <Notification data = {"Here is the shorten url: "} shortenUrl = {this.state.shortUrl} />}
-                {this.state.joinError && <Notification data = {this.state.joinError} joinError />}
+                        <ClearIcon className='header--item' onClick={this.clearBoard} />
+                        <UndoIcon onClick={this.undoStep} className='undo header--item' />
+                        <RedoIcon onClick={this.redoStep} className='redo header--item' /></>}
+                    <ZoomInIcon className={`header--item`} onClick={this.zoomIn} />
+                    <ZoomOutIcon className={`header--item`} onClick={this.zoomOut} />
+                </div>
+                {whiteboard}
+                {this.state.shortUrl && <Notification data={"Here is the shorten url: "} shortenUrl={this.state.shortUrl} />}
+                {this.state.joinError && <Notification data={this.state.joinError} joinError />}
             </div>
         )
     }
@@ -400,7 +415,7 @@ class Main extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     // console.log(state)
-	return {
+    return {
         theme: state.theme,
     }
 }
