@@ -62,6 +62,8 @@ class Main extends React.Component {
         this.manipulateBoard = this.manipulateBoard.bind(this);
         this.toggleColorPicker = this.toggleColorPicker.bind(this);
         this.toggleEraserSlider = this.toggleEraserSlider.bind(this);
+        this.togglePencilPanel = this.togglePencilPanel.bind(this);
+
         this.maxLength = 0;
 
         this.toolChange = this.toolChange.bind(this);
@@ -158,6 +160,13 @@ class Main extends React.Component {
             active: 'Eraser'
         }))
     }
+    togglePencilPanel(){
+        this.setState(prevState => ({
+            showPencilOptions: !prevState.showPencilOptions,
+            tool: Tools.Pencil,
+            active: 'Pencil'
+        }))
+    }
 
     clearBoard() {
         // this.sketchField.current.zoom(Number.MAX_SAFE_INTEGER)
@@ -176,7 +185,7 @@ class Main extends React.Component {
         // this.sketchField.current._onObjectAdded(ctx);
     }
 
-    pencilClick() {
+    pencilClick(event) {
 
         // if(this.state.active === 'Pencil') {
         //     return this.setState({showPencilOptions: true});
@@ -185,8 +194,11 @@ class Main extends React.Component {
         // if(this.state.active === 'Rectangle') {
         //     return this.setState({showPencilOptions: false});
         // }
-
-        this.setState({ tool: Tools.Pencil, active: 'Pencil' })
+        this.setState({
+            tool: Tools.Pencil,
+            active: 'Pencil',
+            lineWidth: parseInt(event.target.value)
+        })
     }
 
     eraserClick(event) {
@@ -385,10 +397,11 @@ class Main extends React.Component {
                 <div className='whiteboard__header' style={{ backgroundColor: '#363d48' }}>
                     <ShareIcon className={`header--item ${this.state.socketConnected ? "shareIcon--active" : ""}`} onClick={this.makeThisLive} />
                     <CancelPresentationIcon className={`header--item ${this.state.socketConnected ? "stopIcon--active" : "stopIcon--disabled"}`} onClick={this.makeThisOffline} />
-                    {!this.state.receiverConnected && <><span className={`header--item ${this.state.active === 'Pencil' && 'item--active'}`} >
-                        <BrushIcon onClick={this.pencilClick} />
-                        {/* { this.state.showPencilOptions && <span></span>} */}
-                    </span>
+                    {!this.state.receiverConnected && <>
+                        <span className="pencil__container" >
+                            <BrushIcon  onClick = {this.togglePencilPanel} className={`header--item`} />
+                                { this.state.showPencilOptions &&<span className='pencil__slider'><input type="range" min="1" max="100" value={this.state.lineWidth} onChange={this.pencilClick} /></span>}
+                        </span>
                         <span className="eraser__container">
                             <EraserIcon icon="mdi:eraser" onClick={this.toggleEraserSlider} className={`header--item`} />
                             {this.state.showEraserSlider && <span className='eraser__slider'><input type="range" min="1" max="100" value={this.state.eraserWidth} onChange={this.eraserClick} /></span>}
