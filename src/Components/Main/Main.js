@@ -208,7 +208,6 @@ class Main extends React.Component {
     }
 
     eraserClick(event) {
-=======
   constructor(props) {
     super(props);
 
@@ -636,7 +635,6 @@ class Main extends React.Component {
             </div>
         )
     }
-=======
               />
               <CircleIcon
                 className={`header--item ${
