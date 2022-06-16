@@ -26,6 +26,7 @@ import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 
 import io from 'socket.io-client';
 import Notification from '../Notification/Notification';
+import Modal from '../Modal/Modal';
 
 class Main extends React.Component {
 
@@ -79,6 +80,8 @@ class Main extends React.Component {
         this.checkForSocketWatcher = this.checkForSocketWatcher.bind(this);
 
         this.socket = null;
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
     }
 
     getLocalStorageData() {
@@ -149,9 +152,18 @@ class Main extends React.Component {
         }))
     }
 
+    showModal() {
+        this.setState({ show: true });
+    };
+
+    hideModal() {
+        this.setState({show:false});
+    };
+
     clearBoard() {
         // this.sketchField.current.zoom(Number.MAX_SAFE_INTEGER)
         this.sketchField.current.clear();
+        this.setState({show:false});
         // const canvas = this.sketchField.current._canvas
         // const ctx = canvas.getContext('2d');
         // const currColor = this.props.theme === 'light' ? '#fff' : '#000';
@@ -384,7 +396,9 @@ class Main extends React.Component {
                             <PaletteIcon  onClick={this.toggleColorPicker} className = 'header--item'/>
                             { this.state.showColorPicker && <HexColorPicker className='color__palette' color={this.state.color} onChange={this.setColor} />}
                         </span>
-                        <ClearIcon className = 'header--item' onClick = {this.clearBoard}/>
+                        <Modal show={this.state.show}  handleClose={this.hideModal} handleConfirm={this.clearBoard}>
+                        </Modal>
+                        <ClearIcon className = 'header--item' onClick = {this.showModal}/>
                         <UndoIcon onClick = {this.undoStep} className='undo header--item' />
                         <RedoIcon onClick = {this.redoStep} className='redo header--item'/></>}
                         <ZoomInIcon className = {`header--item`} onClick = {this.zoomIn} />
