@@ -108,7 +108,7 @@ I am writing down the Dependencies for beginners, so that they can look into it 
 
 ➡️ Submitting someone else work will be reported as 🔴spam.
 
-➡️ Please read [CONTRIBUTING.md](/CONTRIBUTING.md) for details about the process for submitting pull requests to us.
+➡️ Please read [Contributing.md](/Contributing.md) for details about the process for submitting pull requests to us.
 
 
 # Show your support
